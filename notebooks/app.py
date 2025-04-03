@@ -573,7 +573,7 @@ if __name__ == '__main__':
             logger.info(f"Created template: {filename}")
     
     # Get port from environment variable or use 5000 as default
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 10000))
     
     # Run the Flask app
     app.run(host='0.0.0.0', port=port, debug=False)
