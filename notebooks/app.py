@@ -28,6 +28,9 @@ try:
 except Exception as e:
     logger.error(f"Error loading model: {str(e)}")
     model = None
+# In your app.py, add this check right after the model loading attempt
+if model is None:
+    logger.error(f"Model file not found at {MODEL_PATH}. Current directory contents: {os.listdir()}")
 
 # Define the feature names expected by the model
 expected_features = ['AGE', 'CREDIT_SCORE', 'NO_DEFAULT_LOAN', 'NET INCOME', 
@@ -573,7 +576,7 @@ if __name__ == '__main__':
             logger.info(f"Created template: {filename}")
     
     # Get port from environment variable or use 5000 as default
-    port = int(os.environ.get('PORT', 10000))
+    port = int(os.environ.get('PORT', 5000))
     
     # Run the Flask app
     app.run(host='0.0.0.0', port=port, debug=False)

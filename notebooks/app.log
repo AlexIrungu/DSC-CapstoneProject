@@ -250,3 +250,63 @@ expected MARITAL_STATUS_WIDOWED, MARITAL_STATUS_ENGAGED, PRODUCT_ASSET FINANCE L
 2025-04-03 17:51:52,972 - __main__ - INFO - Processed input shape: (1, 89)
 2025-04-03 17:51:53,143 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 17:51:53] "POST /predict HTTP/1.1" 200 -
 2025-04-03 17:51:57,121 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 17:51:57] "GET / HTTP/1.1" 200 -
+2025-04-03 20:53:44,487 - __main__ - INFO - Model loaded successfully from loan_default_xgboost_model.pkl
+2025-04-03 20:53:44,502 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.100.23:10000
+2025-04-03 20:53:44,502 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-03 20:54:00,598 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 20:54:00] "GET / HTTP/1.1" 200 -
+2025-04-03 20:54:01,294 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 20:54:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-03 20:54:17,302 - __main__ - INFO - Received form data: {'AGE': '30', 'CREDIT_SCORE': '300', 'NO_DEFAULT_LOAN': '3', 'NET INCOME': '30000', 'PRINCIPAL_DISBURSED': '300000', 'EMI': '7000', 'GENDER': 'MALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'PERSONAL UNSECURED SCHEME LOAN'}
+2025-04-03 20:54:17,456 - __main__ - INFO - Processed input shape: (1, 89)
+2025-04-03 20:54:17,635 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 20:54:17] "POST /predict HTTP/1.1" 200 -
+2025-04-03 20:54:21,219 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 20:54:21] "GET / HTTP/1.1" 200 -
+2025-04-03 21:20:59,625 - __main__ - INFO - Received form data: {'AGE': '30', 'CREDIT_SCORE': '450', 'NO_DEFAULT_LOAN': '5', 'NET INCOME': '50000', 'PRINCIPAL_DISBURSED': '30000', 'EMI': '3000', 'GENDER': 'MALE', 'MARITAL_STATUS': 'ENGAGED', 'PRODUCT': 'MOBILE LOAN'}
+2025-04-03 21:20:59,765 - __main__ - INFO - Processed input shape: (1, 89)
+2025-04-03 21:20:59,895 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 21:20:59] "POST /predict HTTP/1.1" 200 -
+2025-04-03 21:21:18,903 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 21:21:18] "GET / HTTP/1.1" 200 -
+2025-04-03 21:22:32,412 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 21:22:32] "GET /business-impact HTTP/1.1" 200 -
+2025-04-03 21:22:51,046 - werkzeug - INFO - 127.0.0.1 - - [03/Apr/2025 21:22:51] "GET / HTTP/1.1" 200 -
+2025-04-07 21:19:53,880 - __main__ - ERROR - Error loading model: No module named 'xgboost'
+2025-04-07 21:19:53,897 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.100.23:10000
+2025-04-07 21:19:53,897 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-07 21:20:17,085 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:20:17] "GET / HTTP/1.1" 200 -
+2025-04-07 21:20:19,186 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:20:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-07 21:22:43,252 - __main__ - INFO - Received form data: {'AGE': '26', 'CREDIT_SCORE': '500', 'NO_DEFAULT_LOAN': '3', 'NET INCOME': '50000', 'PRINCIPAL_DISBURSED': '20000', 'EMI': '2000', 'GENDER': 'FEMALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'MOBILE LOAN'}
+2025-04-07 21:22:43,356 - __main__ - INFO - Processed input shape: (1, 89)
+2025-04-07 21:22:43,357 - __main__ - ERROR - Prediction error: Model not loaded correctly
+2025-04-07 21:22:43,362 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:22:43] "[31m[1mPOST /predict HTTP/1.1[0m" 400 -
+2025-04-07 21:22:46,669 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:22:46] "GET / HTTP/1.1" 200 -
+2025-04-07 21:23:37,433 - __main__ - INFO - Received form data: {'AGE': '26', 'CREDIT_SCORE': '300', 'NO_DEFAULT_LOAN': '3', 'NET INCOME': '50000', 'PRINCIPAL_DISBURSED': '20000', 'EMI': '2000', 'GENDER': 'FEMALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'MOBILE LOAN'}
+2025-04-07 21:23:37,507 - __main__ - INFO - Processed input shape: (1, 89)
+2025-04-07 21:23:37,508 - __main__ - ERROR - Prediction error: Model not loaded correctly
+2025-04-07 21:23:37,509 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:23:37] "[31m[1mPOST /predict HTTP/1.1[0m" 400 -
+2025-04-07 21:24:30,022 - __main__ - ERROR - Error loading model: No module named 'xgboost'
+2025-04-07 21:24:30,035 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.23:5000
+2025-04-07 21:24:30,036 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-07 21:24:49,676 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:24:49] "GET / HTTP/1.1" 200 -
+2025-04-07 21:24:49,976 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:24:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-07 21:25:31,896 - __main__ - INFO - Received form data: {'AGE': '26', 'CREDIT_SCORE': '500', 'NO_DEFAULT_LOAN': '3', 'NET INCOME': '50000', 'PRINCIPAL_DISBURSED': '20000', 'EMI': '2000', 'GENDER': 'FEMALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'MOBILE LOAN'}
+2025-04-07 21:25:31,933 - __main__ - INFO - Processed input shape: (1, 89)
+2025-04-07 21:25:31,933 - __main__ - ERROR - Prediction error: Model not loaded correctly
+2025-04-07 21:25:31,936 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:25:31] "[31m[1mPOST /predict HTTP/1.1[0m" 400 -
+2025-04-07 21:25:35,880 - werkzeug - INFO - 127.0.0.1 - - [07/Apr/2025 21:25:35] "GET / HTTP/1.1" 200 -
+2025-05-20 11:08:21,020 - __main__ - INFO - Model loaded successfully from loan_default_xgboost_model.pkl
+2025-05-20 11:08:21,054 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.25:5000
+2025-05-20 11:08:21,055 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-20 11:08:41,990 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 11:08:41] "GET / HTTP/1.1" 200 -
+2025-05-20 11:08:42,397 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 11:08:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-20 11:09:10,409 - __main__ - INFO - Received form data: {'AGE': '20', 'CREDIT_SCORE': '450', 'NO_DEFAULT_LOAN': '4', 'NET INCOME': '45000', 'PRINCIPAL_DISBURSED': '30000', 'EMI': '3000', 'GENDER': 'MALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'MOBILE LOAN'}
+2025-05-20 11:09:10,440 - __main__ - INFO - Processed input shape: (1, 89)
+2025-05-20 11:09:10,508 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 11:09:10] "POST /predict HTTP/1.1" 200 -
+2025-05-20 11:09:17,371 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 11:09:17] "GET / HTTP/1.1" 200 -
