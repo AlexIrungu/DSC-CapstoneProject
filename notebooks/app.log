@@ -329,3 +329,15 @@ expected MARITAL_STATUS_WIDOWED, MARITAL_STATUS_ENGAGED, PRODUCT_ASSET FINANCE L
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.100.25:5000
 2025-05-20 11:55:13,019 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-20 12:55:53,772 - __main__ - WARNING - Failed to load model from notebooks/loan_default_xgboost_model.pkl: [Errno 2] No such file or directory: 'notebooks/loan_default_xgboost_model.pkl'
+2025-05-20 12:55:54,529 - __main__ - INFO - Successfully loaded model from loan_default_xgboost_model.pkl
+2025-05-20 12:55:54,556 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.25:5000
+2025-05-20 12:55:54,556 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-20 12:56:03,925 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 12:56:03] "GET / HTTP/1.1" 200 -
+2025-05-20 12:56:05,066 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 12:56:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-20 12:56:22,029 - __main__ - INFO - Received form data: {'AGE': '50', 'CREDIT_SCORE': '700', 'NO_DEFAULT_LOAN': '6', 'NET INCOME': '70000', 'PRINCIPAL_DISBURSED': '50000', 'EMI': '5000', 'GENDER': 'MALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'PERSONAL UNSECURED SCHEME LOAN'}
+2025-05-20 12:56:22,104 - __main__ - INFO - Processed input shape: (1, 89)
+2025-05-20 12:56:22,313 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 12:56:22] "POST /predict HTTP/1.1" 200 -

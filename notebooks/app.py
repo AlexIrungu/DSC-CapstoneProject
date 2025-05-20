@@ -4,6 +4,7 @@ import pandas as pd
 import joblib
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 import logging
+import warnings
 
 # Configure logging
 logging.basicConfig(
@@ -16,34 +17,46 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Suppress all scikit-learn warnings instead of specific ones
+warnings.filterwarnings("ignore", category=UserWarning, module='sklearn')
+
 # Initialize Flask app
 app = Flask(__name__)
 
-# Load the model
-# Modify the model loading part to be more robust
-MODEL_PATH = os.environ.get('MODEL_PATH', 'loan_default_xgboost_model.pkl')
+# Define MODEL_PATH variable which was referenced but not defined in original code
+MODEL_PATH = 'loan_default_xgboost_model.pkl'
 
-# Make the model loading more robust with fallbacks
-try:
-    model = joblib.load(MODEL_PATH)
-    logger.info(f"Model loaded successfully from {MODEL_PATH}")
-except Exception as e:
-    logger.error(f"Error loading model from {MODEL_PATH}: {str(e)}")
+# Load the model
+def load_model():
+    """Robust model loading with multiple fallback options"""
+    model_paths = [
+        'notebooks/loan_default_xgboost_model.pkl',
+        'loan_default_xgboost_model.pkl',
+        'loan_default_pipeline.pkl',
+        'model.pkl'
+    ]
     
-    # Try to find any .pkl file in the current directory
-    pkl_files = [f for f in os.listdir() if f.endswith('.pkl')]
-    if pkl_files:
-        alternative_path = pkl_files[0]
-        logger.info(f"Attempting to load model from alternative path: {alternative_path}")
+    for path in model_paths:
         try:
-            model = joblib.load(alternative_path)
-            logger.info(f"Model loaded successfully from alternative path: {alternative_path}")
-        except Exception as alt_e:
-            logger.error(f"Error loading model from alternative path: {str(alt_e)}")
-            model = None
-    else:
-        logger.error("No .pkl files found in current directory")
-        model = None
+            model = joblib.load(path)
+            logger.info(f"Successfully loaded model from {path}")
+            return model
+        except Exception as e:
+            logger.warning(f"Failed to load model from {path}: {str(e)}")
+    
+    # If all paths fail, try to load with xgboost directly
+    try:
+        import xgboost as xgb
+        model = xgb.Booster()
+        model.load_model('notebooks/loan_default_xgboost_model.json')  # Try JSON format
+        logger.info("Loaded XGBoost model from JSON")
+        return model
+    except Exception as e:
+        logger.error(f"Failed to load XGBoost model: {str(e)}")
+        return None
+
+# Replace your model loading line with:
+model = load_model()
 
 # Define the feature names expected by the model
 expected_features = ['AGE', 'CREDIT_SCORE', 'NO_DEFAULT_LOAN', 'NET INCOME', 
