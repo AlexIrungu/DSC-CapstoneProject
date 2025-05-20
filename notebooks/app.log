@@ -323,3 +323,9 @@ expected MARITAL_STATUS_WIDOWED, MARITAL_STATUS_ENGAGED, PRODUCT_ASSET FINANCE L
 2025-05-20 11:38:32,578 - __main__ - INFO - Processed input shape: (1, 89)
 2025-05-20 11:38:32,652 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 11:38:32] "POST /predict HTTP/1.1" 200 -
 2025-05-20 11:38:35,469 - werkzeug - INFO - 127.0.0.1 - - [20/May/2025 11:38:35] "GET / HTTP/1.1" 200 -
+2025-05-20 11:55:13,013 - __main__ - INFO - Model loaded successfully from loan_default_xgboost_model.pkl
+2025-05-20 11:55:13,018 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.25:5000
+2025-05-20 11:55:13,019 - werkzeug - INFO - [33mPress CTRL+C to quit[0m

@@ -20,15 +20,30 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 # Load the model
-MODEL_PATH = 'loan_default_xgboost_model.pkl'
+# Modify the model loading part to be more robust
+MODEL_PATH = os.environ.get('MODEL_PATH', 'loan_default_xgboost_model.pkl')
 
+# Make the model loading more robust with fallbacks
 try:
     model = joblib.load(MODEL_PATH)
     logger.info(f"Model loaded successfully from {MODEL_PATH}")
 except Exception as e:
-    logger.error(f"Error loading model: {str(e)}")
-    logger.error(f"Current directory contents: {os.listdir()}")
-    model = None
+    logger.error(f"Error loading model from {MODEL_PATH}: {str(e)}")
+    
+    # Try to find any .pkl file in the current directory
+    pkl_files = [f for f in os.listdir() if f.endswith('.pkl')]
+    if pkl_files:
+        alternative_path = pkl_files[0]
+        logger.info(f"Attempting to load model from alternative path: {alternative_path}")
+        try:
+            model = joblib.load(alternative_path)
+            logger.info(f"Model loaded successfully from alternative path: {alternative_path}")
+        except Exception as alt_e:
+            logger.error(f"Error loading model from alternative path: {str(alt_e)}")
+            model = None
+    else:
+        logger.error("No .pkl files found in current directory")
+        model = None
 
 # Define the feature names expected by the model
 expected_features = ['AGE', 'CREDIT_SCORE', 'NO_DEFAULT_LOAN', 'NET INCOME', 
@@ -265,6 +280,26 @@ def business_impact():
     except Exception as e:
         logger.error(f"Error reading business impact: {str(e)}")
         return render_template('error.html', error="Business impact assessment not available"), 404
+    
+@app.route('/debug')
+def debug():
+    """Debug endpoint to check environment and files"""
+    import sys
+    
+    debug_info = {
+        'current_directory': os.getcwd(),
+        'directory_contents': os.listdir(),
+        'python_version': sys.version,
+        'environment_variables': dict(os.environ),
+        'model_exists': os.path.exists(MODEL_PATH),
+        'model_path': os.path.abspath(MODEL_PATH) if os.path.exists(MODEL_PATH) else None
+    }
+    
+    # Try to see if the model is in the root directory with a different name
+    pkl_files = [f for f in os.listdir() if f.endswith('.pkl')]
+    debug_info['pkl_files_found'] = pkl_files
+    
+    return jsonify(debug_info)
 
 if __name__ == '__main__':
     # Create templates directory if it doesn't exist
