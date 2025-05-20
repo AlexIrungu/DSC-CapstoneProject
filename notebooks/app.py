@@ -27,10 +27,8 @@ try:
     logger.info(f"Model loaded successfully from {MODEL_PATH}")
 except Exception as e:
     logger.error(f"Error loading model: {str(e)}")
+    logger.error(f"Current directory contents: {os.listdir()}")
     model = None
-# In your app.py, add this check right after the model loading attempt
-if model is None:
-    logger.error(f"Model file not found at {MODEL_PATH}. Current directory contents: {os.listdir()}")
 
 # Define the feature names expected by the model
 expected_features = ['AGE', 'CREDIT_SCORE', 'NO_DEFAULT_LOAN', 'NET INCOME', 
@@ -236,6 +234,12 @@ def make_prediction(input_df):
 @app.route('/health')
 def health():
     """Health check endpoint"""
+    if not os.path.exists(MODEL_PATH):
+        return jsonify({
+            'status': 'error', 
+            'message': f'Model file not found at {MODEL_PATH}',
+            'directory_contents': os.listdir()
+        }), 500
     if model is None:
         return jsonify({'status': 'error', 'message': 'Model not loaded'}), 500
     return jsonify({'status': 'healthy', 'model': MODEL_PATH})
