@@ -353,3 +353,38 @@ expected MARITAL_STATUS_WIDOWED, MARITAL_STATUS_ENGAGED, PRODUCT_ASSET FINANCE L
 2025-05-21 11:31:08,541 - __main__ - INFO - Processed input shape: (1, 89)
 2025-05-21 11:31:08,653 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 11:31:08] "POST /predict HTTP/1.1" 200 -
 2025-05-21 11:31:18,877 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 11:31:18] "GET / HTTP/1.1" 200 -
+2025-05-21 12:01:08,345 - __main__ - INFO - Attempting to load model from paths: ['notebooks/loan_default_xgboost_model.pkl', 'loan_default_xgboost_model.pkl', 'notebooks/loan_default_xgboost_model.pkl', '../notebooks/loan_default_xgboost_model.pkl', 'loan_default_pipeline.pkl', 'model.pkl']
+2025-05-21 12:01:08,345 - __main__ - WARNING - Failed to load model from notebooks/loan_default_xgboost_model.pkl: [Errno 2] No such file or directory: 'notebooks/loan_default_xgboost_model.pkl'
+2025-05-21 12:01:08,746 - __main__ - INFO - Successfully loaded model from loan_default_xgboost_model.pkl
+2025-05-21 12:01:08,746 - __main__ - INFO - Model loaded successfully
+2025-05-21 12:01:08,757 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.25:5000
+2025-05-21 12:01:08,757 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-21 12:01:25,513 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:01:25] "GET / HTTP/1.1" 200 -
+2025-05-21 12:01:25,987 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:01:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-21 12:01:48,604 - __main__ - INFO - Received form data: {'AGE': '20', 'CREDIT_SCORE': '300', 'NO_DEFAULT_LOAN': '0', 'NET INCOME': '15000', 'PRINCIPAL_DISBURSED': '6000', 'EMI': '600', 'GENDER': 'MALE', 'MARITAL_STATUS': 'SINGLE', 'PRODUCT': 'PERSONAL UNSECURED SCHEME LOAN'}
+2025-05-21 12:01:48,648 - __main__ - INFO - Processed input shape: (1, 89)
+2025-05-21 12:01:48,775 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:01:48] "POST /predict HTTP/1.1" 200 -
+2025-05-21 12:01:58,911 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:01:58] "GET / HTTP/1.1" 200 -
+2025-05-21 12:15:02,500 - __main__ - INFO - Attempting to load the model...
+2025-05-21 12:15:02,501 - __main__ - INFO - Current working directory: /home/alex-irungu/Documents/Flatiron/course/phase5/DSC-CapstoneProject/notebooks
+2025-05-21 12:15:02,501 - __main__ - INFO - Attempting to load model from paths: ['loan_default_xgboost_model.pkl', 'loan_default_pipeline.pkl', '../notebooks/loan_default_xgboost_model.pkl', '../notebooks/loan_default_pipeline.pkl', 'loan_default_xgboost_model.pkl']
+2025-05-21 12:15:02,501 - __main__ - INFO - Trying to load model from absolute path: /home/alex-irungu/Documents/Flatiron/course/phase5/DSC-CapstoneProject/notebooks/loan_default_xgboost_model.pkl
+2025-05-21 12:15:02,501 - __main__ - INFO - File exists at loan_default_xgboost_model.pkl, attempting to load...
+2025-05-21 12:15:03,284 - __main__ - INFO - Successfully loaded model from loan_default_xgboost_model.pkl
+2025-05-21 12:15:03,285 - __main__ - INFO - Model loaded successfully
+2025-05-21 12:15:03,310 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.25:5000
+2025-05-21 12:15:03,311 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-21 12:17:49,543 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:17:49] "GET / HTTP/1.1" 200 -
+2025-05-21 12:18:23,159 - __main__ - INFO - Received form data: {'AGE': '70', 'CREDIT_SCORE': '500', 'NO_DEFAULT_LOAN': '1', 'NET INCOME': '600000', 'PRINCIPAL_DISBURSED': '200000', 'EMI': '19999', 'GENDER': 'MALE', 'MARITAL_STATUS': 'WIDOWED', 'PRODUCT': 'COMMERCIAL VEHICLES'}
+2025-05-21 12:18:23,189 - __main__ - INFO - Processed input shape: (1, 89)
+2025-05-21 12:18:23,257 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:18:23] "POST /predict HTTP/1.1" 200 -
+2025-05-21 12:18:31,111 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:18:31] "GET / HTTP/1.1" 200 -
+2025-05-21 12:18:37,550 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:18:37] "GET /documentation HTTP/1.1" 200 -
+2025-05-21 12:18:41,596 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:18:41] "GET /business-impact HTTP/1.1" 200 -
+2025-05-21 12:18:42,990 - werkzeug - INFO - 127.0.0.1 - - [21/May/2025 12:18:42] "GET / HTTP/1.1" 200 -
