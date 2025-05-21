@@ -24,22 +24,30 @@ warnings.filterwarnings("ignore", category=UserWarning, module='sklearn')
 app = Flask(__name__)
 
 # Define MODEL_PATH variable which was referenced but not defined in original code
-MODEL_PATH = 'loan_default_xgboost_model.pkl'
+# Define MODEL_PATH variable with your actual path
+MODEL_PATH = 'notebooks/loan_default_xgboost_model.pkl'
 
 # Load the model
 def load_model():
-    """Robust model loading with multiple fallback options"""
+    """Load the trained model from file"""
+    global MODEL_PATH
     model_paths = [
-        'notebooks/loan_default_xgboost_model.pkl',
+        MODEL_PATH,  # Try the user-defined path first
         'loan_default_xgboost_model.pkl',
+        'notebooks/loan_default_xgboost_model.pkl',  
+        '../notebooks/loan_default_xgboost_model.pkl',  
         'loan_default_pipeline.pkl',
         'model.pkl'
     ]
+    
+    logger.info(f"Attempting to load model from paths: {model_paths}")
     
     for path in model_paths:
         try:
             model = joblib.load(path)
             logger.info(f"Successfully loaded model from {path}")
+            # Update MODEL_PATH to the successful path for future reference
+            MODEL_PATH = path
             return model
         except Exception as e:
             logger.warning(f"Failed to load model from {path}: {str(e)}")
@@ -47,17 +55,50 @@ def load_model():
     # If all paths fail, try to load with xgboost directly
     try:
         import xgboost as xgb
-        model = xgb.Booster()
-        model.load_model('notebooks/loan_default_xgboost_model.json')  # Try JSON format
-        logger.info("Loaded XGBoost model from JSON")
-        return model
+        xgb_paths = [
+            'notebooks/loan_default_xgboost_model.json',
+            'loan_default_xgboost_model.json',
+            '../notebooks/loan_default_xgboost_model.json'
+        ]
+        
+        for xgb_path in xgb_paths:
+            try:
+                model = xgb.Booster()
+                model.load_model(xgb_path)
+                logger.info(f"Loaded XGBoost model from {xgb_path}")
+                return model
+            except Exception as e:
+                logger.warning(f"Failed to load XGBoost model from {xgb_path}: {str(e)}")
+    except ImportError:
+        logger.warning("XGBoost is not installed, skipping direct XGBoost loading")
     except Exception as e:
         logger.error(f"Failed to load XGBoost model: {str(e)}")
-        return None
+    
+    # Log the directory contents to help diagnose issues
+    try:
+        current_dir = os.getcwd()
+        logger.info(f"Current directory: {current_dir}")
+        logger.info(f"Directory contents: {os.listdir(current_dir)}")
+        
+        # Check if notebooks directory exists and log its contents
+        notebooks_dir = os.path.join(current_dir, 'notebooks')
+        if os.path.exists(notebooks_dir):
+            logger.info(f"Notebooks directory exists: {notebooks_dir}")
+            logger.info(f"Notebooks directory contents: {os.listdir(notebooks_dir)}")
+    except Exception as e:
+        logger.error(f"Error checking directory contents: {str(e)}")
+    
+    return None
 
-# Replace your model loading line with:
+# Load the model
 model = load_model()
 
+# Check if model is loaded and log appropriate message
+if model is None:
+    logger.error("Failed to load model from any location")
+else:
+    logger.info("Model loaded successfully")
+    
 # Define the feature names expected by the model
 expected_features = ['AGE', 'CREDIT_SCORE', 'NO_DEFAULT_LOAN', 'NET INCOME', 
                      'PRINCIPAL_DISBURSED', 'EMI', 'GENDER', 'MARITAL_STATUS', 'PRODUCT']
